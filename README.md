@@ -5,7 +5,9 @@ CPSC 599.90 - Design of a Mixed Reality App
 Placeholder
 
 # Deployment
-Placeholder
+- Clone `git clone https://github.com/muhannadnouri/CPSC_599.90`
+- Run the application in **Unity** and build for an **Android** or **iOS** device
+- Point the phone's camera at the [**image target**]()
 
 # Contributing
 - Arthur Volpato
