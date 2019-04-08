@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InfoTag : MonoBehaviour
 {
     public string MarkerName;
     public GameObject ObjectToToggleVisibility;
     private Renderer _textRenderer;
+    public Text TextObject;
+    public string TextToDisplay;
     private bool _isMarkerShowing;
     void Start()
     {
@@ -15,10 +18,9 @@ public class InfoTag : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { 
         checkForTouch();
         checkForMouseClick();
-        toggleInfoMarkerVisibility();
     }
     private void checkForTouch()
     {
@@ -28,7 +30,22 @@ public class InfoTag : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                _isMarkerShowing = !_isMarkerShowing;
+                bool isObjectHit = ObjectToToggleVisibility.name == hit.collider.gameObject.name;
+                if (Physics.Raycast(ray, out hit) && isObjectHit) 
+                {
+                    _isMarkerShowing = !_isMarkerShowing;
+                    if (_isMarkerShowing)
+                    {
+                        TextObject.text = TextToDisplay;
+                    }
+                    else
+                    {
+                        TextObject.text = "";
+                    }
+
+                    
+                }
+
             }
         }
     }
@@ -40,12 +57,20 @@ public class InfoTag : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                _isMarkerShowing = !_isMarkerShowing;
+                bool isObjectHit = this.name == hit.collider.gameObject.transform.parent.name;
+                if (Physics.Raycast(ray, out hit) && isObjectHit)
+                {
+                    _isMarkerShowing = !_isMarkerShowing;
+                    if (_isMarkerShowing)
+                    {
+                        TextObject.text = TextToDisplay;
+                    }
+                    else
+                    {
+                        TextObject.text = "";
+                    }
+                }
             }
         }
-    }
-    private void toggleInfoMarkerVisibility()
-    {
-        ObjectToToggleVisibility.SetActive(_isMarkerShowing);
     }
 }

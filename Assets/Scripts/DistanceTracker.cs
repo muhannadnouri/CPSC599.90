@@ -18,6 +18,7 @@ public class DistanceTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         Vector3 delta = Camera.main.transform.position - myTrackableBehaviour.transform.position;
         float distance = delta.magnitude;
 
@@ -29,5 +30,6 @@ public class DistanceTracker : MonoBehaviour
         {
             anim.ResetTrigger("Resting");
         }
+        */
     }
 }
